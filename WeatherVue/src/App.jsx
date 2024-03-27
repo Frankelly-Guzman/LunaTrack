@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Header from "./Components/Header";
-import Navbar from "./Components/Navbar";
+import { useState } from "react";
+import SideBar from "./Components/SideBar";
+import WeatherAPI from "./Components/WeatherAPI";
 import "./App.css";
+import SearchBar from "./Components/SearchBar";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState(null);
+
   return (
     <>
       <div className="App">
-        <Header></Header>
-        <Navbar></Navbar>
+        <SideBar />
+        <SearchBar />
+        <WeatherAPI searchQuery={searchQuery} />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <div>
+    <div className="Navbar">
       <button className="button">
         <img src="/icons8-home-48.png" alt="" />
         Dashboard
