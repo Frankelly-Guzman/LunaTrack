@@ -4,76 +4,94 @@ html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-image: url("/pexels-egor-kamelev-1685543.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .App {
   display: flex;
   height: 100vh;
   width: 100vw;
-  background-image: url(/pexels-egor-kamelev-1685543.jpg);
-  background-size: cover;
+  overflow: hidden; /* Prevent app from being scrollable */
 }
 
+.sidebar-container {
+  width: 20%;
+  margin: 2em;
+  overflow-y: hidden; /* Make sidebar scrollable if content exceeds container height */
+}
+
+.main-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+  overflow: hidden; /* Prevent main container from being scrollable */
+  padding-top: 60px; /* Adjust the padding to make space for the search bar */
+}
+
+/* Sidebar.css */
 .SideBar {
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(1px);
-  background-color: hsla(0, 0%, 100%, 0.1);
-  justify-content: space-evenly;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.8);
+  justify-content: center;
   align-items: center;
   border-radius: 10px;
-  width: 20%;
-  margin: 2em;
+  padding: 1em;
+  height: 90vh;
+  overflow: hidden;
 }
 
-/* Header.css */
+.SideBar h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.SideBar p {
+  margin-top: 0.5em;
+  color: #666;
+}
+
 .Header {
-  height: 100px;
-  margin-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
-  box-sizing: border-box;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
-  color: #fff;
-  border-radius: 10px;
+  align-items: center;
 }
 
 .Header img {
-  width: 48px;
-  height: 48px;
-  margin-right: 10px;
+  height: 4em;
 }
 
-/* Navbar.css */
 .Navbar {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding: 10px 0;
+  justify-content: space-evenly;
 }
 
-.Navbar Button {
+.Navbar button {
   display: flex;
+  margin-bottom: 1em;
   align-items: center;
-  justify-content: center;
-  margin: 1em;
-  width: 200px;
-}
-
-.button img {
-  margin-right: 0.5em;
+  justify-content: space-evenly;
 }
 
 /* SearchBar.css */
 .search-bar {
-  position: relative;
-  width: 300px; /* Adjust width as needed */
-  margin-bottom: 20px;
+  margin-top: 6em; /* Adjust the distance from the top */
+  margin-bottom: 1em;
+  z-index: 999;
+  background-color: #fff;
+  width: 40%; /* Adjust the width as needed */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar form {
@@ -83,53 +101,111 @@ html {
 
 .search-bar input[type="text"],
 .search-bar button {
-  padding: 10px;
+  padding: 8px;
   font-size: 16px;
+  border: none;
+  border-radius: 5px;
 }
 
 .search-bar input[type="text"] {
-  width: calc(100% - 80px); /* Adjust width as needed */
+  flex: 1; /* Take remaining space */
+}
+
+.search-bar button {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #45a049;
 }
 
 /* CurrentWeather.css */
 .current-weather {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 2em;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em;
+  width: 50%;
 }
 
 .current-weather h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
 }
 
 .current-weather div {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  color: #666;
 }
 
-/* WeatherList.css */
-.weather-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  backdrop-filter: blur(1px);
-  background-color: hsla(0, 0%, 100%, 0.1);
+/* WeatherForecast.css */
+.weather-forecast {
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
-  width: 50vw;
+  padding: 20px;
+  max-width: 900px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em;
+  width: 100%;
 }
 
-.weather-card {
-  width: calc(33.33% - 20px);
-  background-color: #f4f4f4;
-  padding: 10px;
-  margin-bottom: 20px;
+.weather-forecast h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
 }
 
-.weather-card h3 {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.weather-card p {
+.weather-forecast ul {
+  list-style-type: none;
+  padding: 0;
   margin: 0;
+}
+
+.weather-forecast li {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.forecast-table-container {
+  max-height: 400px;
+  overflow-y: auto; /* Make table scrollable */
+  width: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: black;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.filter-container {
+  margin-bottom: 1em;
+}
+
+.filter-container label {
+  margin-right: 1em;
+}
+
+.filter-container select {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
 }

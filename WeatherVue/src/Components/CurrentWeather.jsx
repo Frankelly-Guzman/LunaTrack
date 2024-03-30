@@ -1,7 +1,8 @@
-// CurrentWeather.jsx
 import React from "react";
 
 const CurrentWeather = ({ weatherData }) => {
+  const iconBaseUrl = "https://www.weatherbit.io/static/img/icons/";
+
   if (!weatherData) {
     return <div>Loading...</div>;
   }
@@ -19,6 +20,12 @@ const CurrentWeather = ({ weatherData }) => {
       </div>
       <div>
         <strong>Weather:</strong> {weather.description}
+      </div>
+      <div>
+        <img
+          src={`${iconBaseUrl}${weather.icon}.png`}
+          alt={weather.description}
+        />
       </div>
       {/* You can add more weather details here if needed */}
     </div>
