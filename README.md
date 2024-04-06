@@ -30,7 +30,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://imgur.com/gallery/803QMiS' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Video Walkthrough](WeatherVue/public/CodePath_Demo_1.gif)
 
 <!-- Replace this with whatever GIF tool you used! -->
 
