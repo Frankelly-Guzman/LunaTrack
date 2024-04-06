@@ -1,18 +1,24 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "./SideBar.css";
+
 const Navbar = () => {
   return (
     <div className="Navbar">
-      <button className="button">
+      <Link to="/" className="button">
         <img src="/icons8-home-48.png" alt="" />
         Dashboard
-      </button>
-      <button className="button">
+      </Link>
+      <Link to="/" className="button">
+        {" "}
+        {/* Update to "/" */}
         <img src="/icons8-magnifying-glass-48.png" alt="" />
         Search
-      </button>
-      <button className="button">
+      </Link>
+      <Link to="/about" className="button">
         <img src="/icons8-about-48.png" alt="" />
         About
-      </button>
+      </Link>
     </div>
   );
 };

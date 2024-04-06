@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import SideBar from "./Components/SideBar";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import SearchBar from "./Components/SearchBar";
 import WeatherForecast from "./Components/WeatherForecast";
 import CurrentWeather from "./Components/CurrentWeather";
+import WeatherDetails from "./Components/WeatherDetails";
+import NotFound from "./Components/NotFound";
 import "./App.css";
 
 function App() {
@@ -23,7 +25,7 @@ function App() {
       try {
         // Fetch current weather
         const currentWeatherResponse = await fetch(
-          `https://api.weatherbit.io/v2.0/current?city=${searchQuery.city}&state=${searchQuery.state}&key=${API_KEY}`
+          `https://api.weatherbit.io/v2.0/current?city=${searchQuery.city}&state=${searchQuery.state}&units=I&key=${API_KEY}`
         );
         if (!currentWeatherResponse.ok) {
           throw new Error("Failed to fetch current weather data");
@@ -33,7 +35,7 @@ function App() {
 
         // Fetch daily forecast
         const dailyForecastResponse = await fetch(
-          `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchQuery.city}&state=${searchQuery.state}&key=${API_KEY}`
+          `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchQuery.city}&state=${searchQuery.state}&units=I&key=${API_KEY}`
         );
         if (!dailyForecastResponse.ok) {
           throw new Error("Failed to fetch daily forecast data");
@@ -52,17 +54,33 @@ function App() {
     setSearchQuery({ city, state });
   };
 
+  const handlePaperclipClick = (date, city, state) => {
+    navigate(`/weather-details`, { state: { date, city, state } });
+  };
+
   return (
-    <div className="App">
-      <div className="sidebar-container">
-        <SideBar />
-      </div>
-      <div className="main-container">
-        <SearchBar onSearch={handleSearch} />
-        {error && <div className="error-message">{error}</div>}
-        <CurrentWeather weatherData={currentWeather} />
-        <WeatherForecast forecastData={dailyForecast} />
-      </div>
+    <div className="main-container">
+      <SearchBar onSearch={handleSearch} />
+      {error && <div className="error-message">{error}</div>}
+      <CurrentWeather weatherData={currentWeather} />
+      <Routes>
+        <Route
+          path="*"
+          element={
+            <WeatherForecast
+              forecastData={dailyForecast}
+              city={searchQuery.city} // Pass city prop to WeatherForecast
+              state={searchQuery.state} // Pass state prop to WeatherForecast
+              onPaperclipClick={handlePaperclipClick}
+            />
+          }
+        />
+        <Route
+          path="/weather-details/:date"
+          element={<WeatherDetails API_KEY={API_KEY} />}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

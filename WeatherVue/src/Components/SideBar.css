@@ -1,0 +1,60 @@
+/* SideBar.css */
+
+.SideBar {
+  width: 20%;
+  position: fixed;
+  backdrop-filter: blur(2px);
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  width: 150px;
+  height: 4em;
+  color: white;
+}
+
+/* Styles specific to Header component */
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header h1 {
+  margin: 0;
+  font-size: 40px;
+  color: white;
+}
+
+.Header img {
+  height: 4em;
+}
+
+/* Styles specific to Navbar component */
+.Navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.Navbar button {
+  display: flex;
+  margin-bottom: 1em;
+  align-items: center;
+  justify-content: space-evenly;
+}

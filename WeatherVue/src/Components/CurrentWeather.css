@@ -1,0 +1,28 @@
+/* CurrentWeather.css */
+.current-weather {
+  display: flex;
+  align-items: center;
+  margin-top: 2em;
+  backdrop-filter: blur(2px);
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em;
+  width: 50%;
+}
+
+.current-weather h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.current-weather div {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.current-weather img {
+  width: 80px;
+}

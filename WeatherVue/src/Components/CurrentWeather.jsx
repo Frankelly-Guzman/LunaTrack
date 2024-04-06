@@ -1,4 +1,5 @@
 import React from "react";
+import "./CurrentWeather.css";
 
 const CurrentWeather = ({ weatherData }) => {
   const iconBaseUrl = "https://www.weatherbit.io/static/img/icons/";

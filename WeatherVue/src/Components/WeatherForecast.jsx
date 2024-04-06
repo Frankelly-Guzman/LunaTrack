@@ -1,8 +1,8 @@
-// WeatherForecast.jsx
-
 import React, { useState } from "react";
+import "./WeatherForecast.css";
+import { Link } from "react-router-dom";
 
-const WeatherForecast = ({ forecastData }) => {
+const WeatherForecast = ({ forecastData, city, state, onPaperclipClick }) => {
   const iconBaseUrl = "https://www.weatherbit.io/static/img/icons/";
 
   // Define the list of weather conditions and their corresponding keywords
@@ -19,6 +19,10 @@ const WeatherForecast = ({ forecastData }) => {
   // Function to handle filter selection
   const handleFilterChange = (event) => {
     setSelectedCondition(event.target.value);
+  };
+
+  const handlePaperclipClick = (day) => {
+    onPaperclipClick(day.valid_date, city, state);
   };
 
   // Function to filter weather data based on selected condition
@@ -61,12 +65,13 @@ const WeatherForecast = ({ forecastData }) => {
                 <th>Temperature (°F)</th>
                 <th>Precipitation (in)</th>
                 <th>Icon</th>
-                {/* Add more table headers if needed */}
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
               {filteredData.map((day) => (
                 <tr key={day.ts}>
+                  {/* Your existing table data */}
                   <td>{day.valid_date}</td>
                   <td>{day.weather.description}</td>
                   <td>{day.temp}</td>
@@ -77,7 +82,14 @@ const WeatherForecast = ({ forecastData }) => {
                       alt={day.weather.description}
                     />
                   </td>
-                  {/* Add more table cells for additional weather data */}
+                  <td>
+                    <img
+                      src="/paper-clip.png"
+                      alt=""
+                      className="paperclip"
+                      onClick={() => handlePaperclipClick(day)}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>

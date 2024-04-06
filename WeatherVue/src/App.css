@@ -1,4 +1,5 @@
 /* App.css */
+
 body,
 html {
   margin: 0;
@@ -12,200 +13,16 @@ html {
 
 .App {
   display: flex;
-  height: 100vh;
   width: 100vw;
-  overflow: hidden; /* Prevent app from being scrollable */
-}
-
-.sidebar-container {
-  width: 20%;
-  margin: 2em;
-  overflow-y: hidden; /* Make sidebar scrollable if content exceeds container height */
+  height: 100vh;
+  justify-content: space-between;
 }
 
 .main-container {
-  width: 80%;
+  flex: 1;
+  margin-left: 25em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2em;
-  overflow: hidden; /* Prevent main container from being scrollable */
-  padding-top: 60px; /* Adjust the padding to make space for the search bar */
-}
-
-/* Sidebar.css */
-.SideBar {
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.8);
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  padding: 1em;
-  height: 90vh;
-  overflow: hidden;
-}
-
-.SideBar h2 {
-  margin: 0;
-  font-size: 24px;
-  color: #333;
-}
-
-.SideBar p {
-  margin-top: 0.5em;
-  color: #666;
-}
-
-.Header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Header img {
-  height: 4em;
-}
-
-.Navbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.Navbar button {
-  display: flex;
-  margin-bottom: 1em;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-/* SearchBar.css */
-.search-bar {
-  margin-top: 6em; /* Adjust the distance from the top */
-  margin-bottom: 1em;
-  z-index: 999;
-  background-color: #fff;
-  width: 40%; /* Adjust the width as needed */
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.search-bar form {
-  display: flex;
-  align-items: center;
-}
-
-.search-bar input[type="text"],
-.search-bar button {
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-}
-
-.search-bar input[type="text"] {
-  flex: 1; /* Take remaining space */
-}
-
-.search-bar button {
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-}
-
-.search-bar button:hover {
-  background-color: #45a049;
-}
-
-/* CurrentWeather.css */
-.current-weather {
-  display: flex;
-  align-items: center;
   margin-top: 2em;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1em;
-  width: 50%;
-}
-
-.current-weather h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.current-weather div {
-  margin-bottom: 10px;
-  color: #666;
-}
-
-/* WeatherForecast.css */
-.weather-forecast {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 900px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1em;
-  width: 100%;
-}
-
-.weather-forecast h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.weather-forecast ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.weather-forecast li {
-  margin-bottom: 10px;
-  color: #666;
-}
-
-.forecast-table-container {
-  max-height: 400px;
-  overflow-y: auto; /* Make table scrollable */
-  width: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: black;
-}
-
-th,
-td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-.filter-container {
-  margin-bottom: 1em;
-}
-
-.filter-container label {
-  margin-right: 1em;
-}
-
-.filter-container select {
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 5px;
+  justify-content: space-evenly;
 }

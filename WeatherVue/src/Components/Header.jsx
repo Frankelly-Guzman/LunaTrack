@@ -1,3 +1,5 @@
+import "./SideBar.css";
+
 const Header = () => {
   return (
     <div className="Header">
