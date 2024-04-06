@@ -4,7 +4,7 @@ Submitted by: **Frankelly Guzman**
 
 This web app: **Welcome to the React Weather Dashboard project! This dashboard-style web application provides real-time weather updates and forecasts, presented in an intuitive and visually appealing interface. Powered by React, this app offers seamless navigation and comprehensive weather information, ensuring you stay informed about current and upcoming weather conditions with ease.**
 
-Time spent: **5** hours spent in total
+Time spent: **8** hours spent in total
 
 ## Required Features
 
@@ -18,7 +18,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Multiple filters can be applied simultaneously
+- [x] Multiple filters can be applied simultaneously
 - [ ] Filters use different input types such as a text input, a selection, or a slider
 - [ ] The user can enter specific bounds for filter values
 
@@ -44,6 +44,8 @@ GIF created with ScreenToGif
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+Currently the biggest challenge is getting the route correct for the WeatherDetails component. No matter how I try to implement it the route does not connect to the right component and triggers it to be sent to the NotFound component.
 
 ## License
 
