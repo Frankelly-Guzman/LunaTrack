@@ -27,7 +27,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='/CodePath_Demo_1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='WeatherVue\public\CodePath_Demo_1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 
