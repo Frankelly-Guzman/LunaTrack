@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./WeatherForecast.css";
-import { Link } from "react-router-dom";
 
 const WeatherForecast = ({ forecastData, city, state, onPaperclipClick }) => {
   const iconBaseUrl = "https://www.weatherbit.io/static/img/icons/";
@@ -83,12 +82,13 @@ const WeatherForecast = ({ forecastData, city, state, onPaperclipClick }) => {
                     />
                   </td>
                   <td>
-                    <img
-                      src="/paper-clip.png"
-                      alt=""
-                      className="paperclip"
+                    <button
+                      type="button"
+                      className="paperclip-button"
                       onClick={() => handlePaperclipClick(day)}
-                    />
+                    >
+                      <img src="/paper-clip.png" alt="" className="paperclip" />
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -3,8 +3,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import SearchBar from "./Components/SearchBar";
 import WeatherForecast from "./Components/WeatherForecast";
 import CurrentWeather from "./Components/CurrentWeather";
-import WeatherDetails from "./Components/WeatherDetails";
-import NotFound from "./Components/NotFound";
 import "./App.css";
 
 function App() {
@@ -12,6 +10,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [dailyForecast, setDailyForecast] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const API_KEY = import.meta.env.VITE_API_ACCESS_KEY;
 
@@ -55,7 +54,11 @@ function App() {
   };
 
   const handlePaperclipClick = (date, city, state) => {
-    navigate(`/weather-details`, { state: { date, city, state } });
+    console.log(`Navigating to: /weather-details/${date}`);
+    console.log(`City: ${city}, State: ${state}`);
+    navigate(`/weather-details/${date}/${city}/${state}`, {
+      state: { date, city, state },
+    });
   };
 
   return (
@@ -63,24 +66,12 @@ function App() {
       <SearchBar onSearch={handleSearch} />
       {error && <div className="error-message">{error}</div>}
       <CurrentWeather weatherData={currentWeather} />
-      <Routes>
-        <Route
-          path="*"
-          element={
-            <WeatherForecast
-              forecastData={dailyForecast}
-              city={searchQuery.city} // Pass city prop to WeatherForecast
-              state={searchQuery.state} // Pass state prop to WeatherForecast
-              onPaperclipClick={handlePaperclipClick}
-            />
-          }
-        />
-        <Route
-          path="/weather-details/:date"
-          element={<WeatherDetails API_KEY={API_KEY} />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <WeatherForecast
+        forecastData={dailyForecast}
+        city={searchQuery.city}
+        state={searchQuery.state}
+        onPaperclipClick={handlePaperclipClick}
+      />
     </div>
   );
 }

@@ -1,0 +1,26 @@
+.Detail-table {
+  flex: 1;
+  margin-left: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  backdrop-filter: blur(2px);
+  background-color: hsla(0, 0%, 100%, 0.1);
+  width: 800px;
+  max-height: 800px;
+  border-radius: 10px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.LineChart-container {
+  margin-top: 20px;
+}
+
+.recharts-text {
+  fill: white; /* Change text color to white */
+}
