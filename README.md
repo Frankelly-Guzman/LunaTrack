@@ -1,48 +1,44 @@
-# Web Development Project 6 - _WeatherVue_
+# Web Development Project 5 - *LunaTrack*
 
 Submitted by: **Frankelly Guzman**
 
-This web app: **Welcome to the React Weather Dashboard project! This dashboard-style web application provides real-time weather updates and forecasts, presented in an intuitive and visually appealing interface. Powered by React, this app offers seamless navigation and comprehensive weather information, ensuring you stay informed about current and upcoming weather conditions with ease.**
+This web app: **This app gives the user both weather and astrological details about Orlando, FL.**
 
-Time spent: **5** hours spent in total
+Time spent: **4** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
-- [x] **Clicking on an item in the list view displays more details about it**
-- [x] **Clicking on an item has a direct, unique link to that item's detail view page**
+- [X] **The list displays a list of data fetched using an API call**
+- [X] **Data uses the useEffect React hook and async/await syntax**
+- [X] **The app dashboard includes at least three summary statistics about the data such as**
+  - [ ] *insert details*
+- [X] **A search bar allows the user to search for an item in the fetched data**
+- [X] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
 The following **optional** features are implemented:
 
-- [ ] The site's customized dashboard contains more content that explains what is interesting about the data
-- [ ] The site allows users to toggle between different data visualizations
+- [ ] Multiple filters can be applied simultaneously
+- [ ] Filters use different input types such as a text input, a selection, or a slider
+- [ ] The user can enter specific bounds for filter values
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you added to improve the site's functionality!
+* [ ] List anything else that you added to improve the site's functionality!
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='WeatherVue\public\CodePath_Demo_1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='./ExampleGif.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-
-GIF created with ScreenToGif
-
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
+GIF created with GiphyCapture
 
 ## Notes
 
 Describe any challenges encountered while building the app.
-
-The biggest challenge was getting the WeatherDetails component to render upon the click of the paperclip and grabbing the corresponding data to perform an api request for that specific date.
 
 ## License
 
