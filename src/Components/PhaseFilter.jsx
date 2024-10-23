@@ -27,10 +27,11 @@ const PhaseFilter = ({ selectedPhase, setSelectedPhase, selectedDate, setSelecte
         Enter Date:
       </label>
       <input
-        type='date'
+        type='text'
         id='date-input'
         value={selectedDate}
         onChange={(e) => setSelectedDate(e.target.value)}
+        placeholder='YYYY-MM-DD'
         className='mb-2 p-1 rounded'
       />
 
