@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PhaseFilter from './PhaseFilter'; // Import your PhaseFilter component
+import { useNavigate } from 'react-router-dom';
+import MoonPhaseChart from './MoonPhaseChart';
+import TemperatureBarChart from './TemperatureBarChart';
 
 const MoonPhaseTable = () => {
   const [forecastData, setForecastData] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedPhase, setSelectedPhase] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const navigate = useNavigate();
 
   const moonPhaseEmojis = {
     'New Moon': '🌑',
@@ -40,6 +44,7 @@ const MoonPhaseTable = () => {
             lat,
             lon,
             key: apiKey,
+            units: 'I',
           },
         });
         setForecastData(response.data.data);
@@ -60,25 +65,27 @@ const MoonPhaseTable = () => {
 
   // Function to get the correct emoji based on moon phase from API response
   const getMoonPhaseEmoji = (moonPhase) => {
-    if (moonPhase <= 0.03 || moonPhase >= 0.97) return moonPhaseEmojis['NEW_MOON'];
-    if (moonPhase > 0.03 && moonPhase < 0.25) return moonPhaseEmojis['WAXING_CRESCENT'];
-    if (moonPhase === 0.25) return moonPhaseEmojis['FIRST_QUARTER'];
-    if (moonPhase > 0.25 && moonPhase < 0.5) return moonPhaseEmojis['WAXING_GIBBOUS'];
-    if (moonPhase === 0.5) return moonPhaseEmojis['FULL_MOON'];
-    if (moonPhase > 0.5 && moonPhase < 0.75) return moonPhaseEmojis['WANING_GIBBOUS'];
-    if (moonPhase === 0.75) return moonPhaseEmojis['LAST_QUARTER'];
-    if (moonPhase > 0.75 && moonPhase < 0.97) return moonPhaseEmojis['WANING_CRESCENT'];
+    if (moonPhase <= 0.03 || moonPhase >= 0.97) return { emoji: '🌑', name: 'New Moon' };
+    if (moonPhase > 0.03 && moonPhase < 0.25) return { emoji: '🌒', name: 'Waxing Crescent' };
+    if (moonPhase === 0.25) return { emoji: '🌓', name: 'First Quarter' };
+    if (moonPhase > 0.25 && moonPhase < 0.5) return { emoji: '🌔', name: 'Waxing Gibbous' };
+    if (moonPhase === 0.5) return { emoji: '🌕', name: 'Full Moon' };
+    if (moonPhase > 0.5 && moonPhase < 0.75) return { emoji: '🌖', name: 'Waning Gibbous' };
+    if (moonPhase === 0.75) return { emoji: '🌗', name: 'Last Quarter' };
+    if (moonPhase > 0.75 && moonPhase < 0.97) return { emoji: '🌘', name: 'Waning Crescent' };
+    return { emoji: '❓', name: 'Unknown' }; // Fallback in case of unexpected values
   };
 
   // Function to handle the filter submission
-  const handleFilterSubmit = () => {
-    const newFilteredData = forecastData.filter(day => {
-      const matchesPhase = selectedPhase ? getMoonPhaseEmoji(day.moon_phase) === moonPhaseEmojis[selectedPhase] : true;
-      const matchesDate = selectedDate ? day.valid_date === selectedDate : true;
-      return matchesPhase && matchesDate;
-    });
-    setFilteredData(newFilteredData);
-  };
+const handleFilterSubmit = () => {
+  const newFilteredData = forecastData.filter(day => {
+    const moonPhase = getMoonPhaseEmoji(day.moon_phase);
+    const matchesPhase = selectedPhase ? moonPhase.name === selectedPhase : true;
+    const matchesDate = selectedDate ? day.valid_date === selectedDate : true;
+    return matchesPhase && matchesDate;
+  });
+  setFilteredData(newFilteredData);
+};
 
   // Function to reset the filter
   const handleReset = () => {
@@ -87,40 +94,64 @@ const MoonPhaseTable = () => {
     setFilteredData(forecastData); // Reset to the full dataset
   };
 
+  const handleDetailsClick = (date) => {
+    navigate(`/details/${date}`);
+  }
+
   return (
-    <div className='space-y-4 w-full items-center justify-center text-center'>
-      {/* Phase Filter */}
-      <PhaseFilter 
-        selectedPhase={selectedPhase} 
-        setSelectedPhase={setSelectedPhase} 
-        selectedDate={selectedDate} 
-        setSelectedDate={setSelectedDate}
-        onSubmit={handleFilterSubmit} 
-        onReset={handleReset} 
-      />
-  
-      {/* Table */}
-      <div className='overflow-auto flex justify-center'>
-        <table className='w-3/4 text-white'>
-          <thead className='bg-slate-900'>
-            <tr>
-              <th>Date</th>
-              <th>Temperature (°C)</th>
-              <th>Time (Sunrise - Sunset)</th>
-              <th>Phase</th>
-            </tr>
-          </thead>
-          <tbody className='bg-slate-800'>
-            {filteredData.map((day) => (
-              <tr key={day.valid_date} className='hover:bg-slate-700'>
-                <td>{day.valid_date}</td>
-                <td>{day.temp}°C</td>
-                <td>{`${formatTime(day.sunrise_ts)} - ${formatTime(day.sunset_ts)}`}</td>
-                <td>{getMoonPhaseEmoji(day.moon_phase)}</td>
+    <div className='flex w-full space-x-4'>
+      {/* Left Side: Filter and Table */}
+      <div className='flex flex-col w-2/3'>
+        {/* Phase Filter */}
+        <div className='flex mb-4'>
+          <PhaseFilter 
+            selectedPhase={selectedPhase} 
+            setSelectedPhase={setSelectedPhase} 
+            selectedDate={selectedDate} 
+            setSelectedDate={setSelectedDate}
+            onSubmit={handleFilterSubmit} 
+            onReset={handleReset} 
+          />
+        </div>
+        
+        {/* Table */}
+        <div className='overflow-auto max-h-[500px] rounded-lg'>
+          <table className='w-full text-white'>
+            <thead className='bg-slate-900'>
+              <tr>
+                <th>Date</th>
+                <th>Temperature (°F)</th>
+                <th>Time (Sunrise - Sunset)</th>
+                <th>Phase</th>
+                <td>Details</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className='bg-slate-800'>
+              {filteredData.map((day) => {
+                const moonPhase = getMoonPhaseEmoji(day.moon_phase);
+                return (
+                  <tr key={day.valid_date} className='hover:bg-slate-700'>
+                    <td>{day.valid_date}</td>
+                    <td>{day.temp}°F</td>
+                    <td>{`${formatTime(day.sunrise_ts)} - ${formatTime(day.sunset_ts)}`}</td>
+                    <td>{moonPhase.emoji} {moonPhase.name}</td>
+                    <td>
+                      <button onClick={() => handleDetailsClick(day.valid_date)}>
+                        🔗
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      {/* Right Side: Chart and Temperature Bar Chart */}
+      <div className='w-1/3 mr-4'>
+        <MoonPhaseChart />
+        <TemperatureBarChart /> {/* Include the Temperature Bar Chart here */}
       </div>
     </div>
   );

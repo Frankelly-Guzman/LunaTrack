@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const PhaseFilter = ({ selectedPhase, setSelectedPhase, selectedDate, setSelectedDate, onSubmit, onReset }) => {
   return (
-    <div className='flex flex-row items-center justify-between mx-4'>
+    <div className='flex flex-row items-center justify-between mx-4 gap-4'>
       <label htmlFor='phase-select' className='text-white mb-2'>
         Select Moon Phase:
       </label>
